@@ -1,0 +1,8 @@
+key:
+--
+p: less than half of season
+h: half or more of season
+-: all of season
+l: link(s) found
+2: season not found
+x: not yet aired/available
