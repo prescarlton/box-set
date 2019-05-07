@@ -15,6 +15,8 @@ import scraper
 badchars = ['\\', '?', '>', '<', '|', '"', '*', ':']
 # dictionary for all shows
 shows = {}
+# location where shows are stored
+SHOWS_LOCATION = "F:/media/shows"
 
 
 def clean(file):
@@ -40,8 +42,6 @@ def clean(file):
 def makeShowList(file):
     '''
     makes a list of shows from file
-    note: shows are in this format:
-    <showname>//<year first aired>//<num seasons>
     '''
     with open(file, 'r') as f:
         lines = f.readlines()
@@ -69,6 +69,14 @@ def getShows(showlist):
         }
 
 
+def showInfo(show_name):
+    '''
+    returns a pretty, formatted blurb of information containing
+    data scraped from TVDB
+    '''
+    pass
+
+
 def createShowDirectories():
     '''
     creates directories for all shows in the given list
@@ -78,31 +86,42 @@ def createShowDirectories():
     for show in shows:
         try:
             show_dict = scraper.scrapeSeries(show)
-        except:
+        except Exception as e:
             print("could not scrape data for %s. skipping for now." % (show))
+            print(e)
             continue
-        # show_info = scrapeShow(show)
+
         dir_name = show
-        if (os.path.exists('../shows/' + dir_name)):
+        if (os.path.exists(f'{SHOWS_LOCATION}/{dir_name}')):
             # os.makedirs('../shows/' + dir_name)
-            with open('../shows/{0}/show.txt'.format(dir_name), 'w') as f:
+            with open(f'{SHOWS_LOCATION}/{dir_name}/show.txt', 'w') as f:
                 f.write(str(show_dict))
+                # f.write(showInfo(show))
 
 
 def createSeasonFolders():
     '''
     creates folders for all the seasons in a show
     '''
-    for show in shows:
-        showname = show
-        num_seasons = int(shows[show]["seasons"])
-        year = shows[show]["year"]
+    for series in shows:
+
+        num_seasons = int(shows[series]["seasons"])
+
         for i in range(num_seasons):
-            if not(os.path.exists('../shows/{0} ({2})/Season {1}'.format(showname, str(i+1), year))):
-                os.makedirs('../shows/{0} ({2})/Season {1}'.format(showname, str(i+1), year))
+            if not(os.path.exists(f'{SHOWS_LOCATION}/{series}/Season {str(i + 1)}')):
+
+                os.makedirs(f'{SHOWS_LOCATION}/{series}/Season {str(i + 1)}')
                 # create file containing season information
-                with open('../shows/{0}/Season {1}/season.txt'.format(showname, str(i+1))) as f:
-                    f.write('')
+                with open(f'{SHOWS_LOCATION}/{series}/Season {str(i + 1)}/season.txt', 'w') as f:
+                    f.write('yeet i should make this do something')
+
+
+def createMasterFile():
+    '''
+    creates a textfile in the top level directory of the shows to store
+    information about shows as a whole, such as being downloaded/found etc.
+    '''
+    pass
 
 
 def reloadShowFiles():
@@ -110,12 +129,12 @@ def reloadShowFiles():
     creates all the .txt files containing a show's information
     '''
     for show in os.listdir('../shows/'):
-        showname = show.split(' (')[0]
-        year = shows[showname]['year']
-        num_seasons = shows[showname]['seasons']
-        owned_seasons = 0
 
-        for season in os.listdir('../shows/%s' % (show)):
+        # year = shows[show]['year']
+        # num_seasons = shows[show]['seasons']
+        # owned_seasons = 0
+
+        for season in os.listdir(f'{SHOWS_LOCATION}/shows/{show}'):
             num_eps = 0
 
             for _, dirnames, episodes in os.walk('../shows/%s/%s' % (show, season)):
@@ -129,8 +148,8 @@ def reloadShowFiles():
 
 getShows(makeShowList('../tv.txt'))
 createShowDirectories()
-# createSeasonFolders()
-# # print(shows)
+createSeasonFolders()
+print(shows)
 # reloadShowFiles()
 # fosters = scraper.scrapeSeries("Foster's Home for Imaginary Friends")
 
