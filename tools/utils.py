@@ -11,12 +11,16 @@
 
 import os
 import scraper
+import logging
+from boxset_exceptions import InvalidSeriesURL
 # list of characters to be removed from show names
 badchars = ['\\', '?', '>', '<', '|', '"', '*', ':']
 # dictionary for all shows
 shows = {}
 # location where shows are stored
 SHOWS_LOCATION = "F:/media/shows"
+
+logging.basicConfig(filename='boxset.log', format='[%(asctime)s] [%(levelname)s]: %(message)s')
 
 
 def clean(file):
@@ -39,11 +43,11 @@ def clean(file):
             f.write(line)
 
 
-def makeShowList(file):
+def makeShowList(source_file):
     '''
     makes a list of shows from file
     '''
-    with open(file, 'r') as f:
+    with open(source_file, 'r') as f:
         lines = f.readlines()
 
     for i, line in enumerate(lines):
@@ -61,11 +65,9 @@ def getShows(showlist):
     for show in showlist:
         show_name = show.split('//')[0]
         year = show.split('//')[1]
-        num_seasons = int(show.split('//')[2])
 
         shows[show_name] = {
-            "year": year,
-            "seasons": num_seasons
+            "year": year
         }
 
 
@@ -84,11 +86,16 @@ def createShowDirectories():
     '''
 
     for show in shows:
+
         try:
             show_dict = scraper.scrapeSeries(show)
-        except Exception as e:
-            print("could not scrape data for %s. skipping for now." % (show))
-            print(e)
+            # scraper.scrapeSeries returns a string containing the URL
+            # if it fails, so here we're checking that
+            if type(show_dict) == str:
+                raise InvalidSeriesURL
+
+        except InvalidSeriesURL as e:
+            logging.error(f'{show_dict}: {e}')
             continue
 
         dir_name = show
@@ -96,7 +103,7 @@ def createShowDirectories():
             # os.makedirs('../shows/' + dir_name)
             with open(f'{SHOWS_LOCATION}/{dir_name}/show.txt', 'w') as f:
                 f.write(str(show_dict))
-                # f.write(showInfo(show))
+        shows[show] = show_dict
 
 
 def createSeasonFolders():
@@ -149,7 +156,7 @@ def reloadShowFiles():
 getShows(makeShowList('../tv.txt'))
 createShowDirectories()
 createSeasonFolders()
-print(shows)
+# print(shows)
 # reloadShowFiles()
 # fosters = scraper.scrapeSeries("Foster's Home for Imaginary Friends")
 

@@ -1,4 +1,5 @@
 import requests
+from boxset_exceptions import InvalidSeriesURL
 from bs4 import BeautifulSoup
 
 
@@ -9,6 +10,7 @@ def scrapeSeries(series_name):
     display_name = series_name
     num_seasons = 0
     series_name = series_name.replace('\'', '')
+    series_name = series_name.replace('.', '-')
     series_name = series_name.lower().replace(' ', '-')
 
     series_url = "https://www.thetvdb.com/series/" + series_name
@@ -16,16 +18,22 @@ def scrapeSeries(series_name):
     series_request = requests.get(series_url)
     print("Reponse Code %s for %s" % (series_request.status_code, series_name))
     print("parsing html...")
-    series_html = BeautifulSoup(series_request.text, 'html.parser')
 
-    seasons_url = series_url + "/seasons/all"
-    seasons_request = requests.get(seasons_url)
+    try:
+        series_html = BeautifulSoup(series_request.text, 'html.parser')
 
-    seasons_html = BeautifulSoup(seasons_request.text, 'html.parser')
+        seasons_url = series_url + "/seasons/all"
+        seasons_request = requests.get(seasons_url)
 
-    series_desc = series_html.find('div', attrs={'class': 'change_translation_text', 'data-language': 'en'}).text.strip()
+        seasons_html = BeautifulSoup(seasons_request.text, 'html.parser')
 
-    series_image = series_html.find('img', attrs={'class': 'img-responsive full_width_image'})['src']
+        series_desc = series_html.find('div', attrs={'class': 'change_translation_text', 'data-language': 'en'}).text.strip()
+
+        series_image = series_html.find('img', attrs={'class': 'img-responsive full_width_image'})['src']
+    except:
+        return series_name
+
+
 
     # seasons info
     for season in seasons_html.find_all('h3'):
@@ -40,7 +48,3 @@ def scrapeSeries(series_name):
         "series_image": series_image
     }
     return show_dict
-
-
-if __name__ == '__main__':
-    scrapeSeries('Supernatural')
