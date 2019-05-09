@@ -1,3 +1,10 @@
 #ignore python junk
 __pycache__/
 *.pyc
+
+#ignore all log files
+*.log
+
+#ignore scratchpad files
+
+*-sp.py
