@@ -28,7 +28,7 @@ Brooklyn Nine-Nine//2013
 Master of None//2015
 Parks and Recreation//2009
 Scooby Doo! Where are you//1969
-Agents of Shield//2013
+Marvel's Agents of S.H.I.E.L.D//2013
 Foster's Home for Imaginary Friends//2004
 Drake and Josh//2004
 The Powerpuff Girls//1998
@@ -47,3 +47,4 @@ The Looney Tunes Show//2011
 The Flintstones//1960
 Spider-Man//1967
 House//2004
+Big Bang Theory//2007
