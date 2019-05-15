@@ -42,9 +42,9 @@ def scrapeSeries(series_name):
             num_seasons += 1
 
     show_dict = {
-        "display_name": display_name,
-        "seasons": num_seasons,
+        "display-name": display_name,
+        "num-seasons": num_seasons,
         "desc": series_desc,
-        "series_image": series_image
+        "series-image": series_image
     }
     return show_dict

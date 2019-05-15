@@ -18,7 +18,7 @@ badchars = ['\\', '?', '>', '<', '|', '"', '*', ':']
 # dictionary for all shows
 shows = {}
 # location where shows are stored
-SHOWS_LOCATION = "F:/media/shows"
+SHOWS_LOCATION = "Z:/TV Shows"
 
 logging.basicConfig(filename='boxset.log', format='[%(asctime)s] [%(levelname)s]: %(message)s')
 
@@ -98,10 +98,10 @@ def createShowDirectories():
             logging.error(f'{show_dict}: {e}')
             continue
 
-        dir_name = show
-        if (os.path.exists(f'{SHOWS_LOCATION}/{dir_name}')):
+        # num_seasons = show_dict["seasons"]
+        if (os.path.exists(f'{SHOWS_LOCATION}/{show}')):
             # os.makedirs('../shows/' + dir_name)
-            with open(f'{SHOWS_LOCATION}/{dir_name}/show.txt', 'w') as f:
+            with open(f'{SHOWS_LOCATION}/{show}/show.txt', 'w') as f:
                 f.write(str(show_dict))
         shows[show] = show_dict
 
@@ -111,16 +111,19 @@ def createSeasonFolders():
     creates folders for all the seasons in a show
     '''
     for series in shows:
+        try:
 
-        num_seasons = int(shows[series]["seasons"])
+            num_seasons = int(shows[series]["num-seasons"])
 
-        for i in range(num_seasons):
-            if not(os.path.exists(f'{SHOWS_LOCATION}/{series}/Season {str(i + 1)}')):
+            for i in range(num_seasons):
+                if not(os.path.exists(f'{SHOWS_LOCATION}/{series}/Season {str(i + 1)}')):
 
-                os.makedirs(f'{SHOWS_LOCATION}/{series}/Season {str(i + 1)}')
-                # create file containing season information
-                with open(f'{SHOWS_LOCATION}/{series}/Season {str(i + 1)}/season.txt', 'w') as f:
-                    f.write('yeet i should make this do something')
+                    os.makedirs(f'{SHOWS_LOCATION}/{series}/Season {str(i + 1)}')
+                    # create file containing season information
+                    with open(f'{SHOWS_LOCATION}/{series}/Season {str(i + 1)}/season.txt', 'w') as f:
+                        f.write('yeet i should make this do something')
+        except:
+            pass
 
 
 def createMasterFile():
