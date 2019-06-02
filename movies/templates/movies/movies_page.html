@@ -1,0 +1,10 @@
+{% extends "home/base.html" %}
+{% block content %}
+    {% for movie in movies_list %}
+        <div>
+        <h1>{{ movie.title }} ({{movie.year}})</h1>
+        <p>This is the description for {{movie.title}}</p>
+        </div>
+        
+    {% endfor %}
+{% endblock content %}

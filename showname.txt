@@ -1,5 +1,0 @@
-NAME::from .txt file
-YEAR::from .txt file
-GENRE::from tvdb
-TAGS::only here
-DESCRIPTION::from tvdb
