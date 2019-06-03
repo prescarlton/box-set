@@ -10,9 +10,9 @@
 #    have been downloaded
 
 import os
-import scraper
 import logging
-from boxset_exceptions import InvalidSeriesURL
+import utils.scraper as scraper
+from utils.boxset_exceptions import InvalidSeriesURL
 # list of characters to be removed from show names
 badchars = ['\\', '?', '>', '<', '|', '"', '*', ':']
 # dictionary for all shows

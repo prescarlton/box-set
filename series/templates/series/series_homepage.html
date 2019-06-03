@@ -1,0 +1,15 @@
+{% extends "home/base.html" %}
+{% block content %}
+    {% for series in series_list %}
+    <div class='series-container'>
+        <div class='row'>
+            <div class='col-md-2 col-xs-3'><img src={{series.image}} class="poster"></div>
+            <div class='col-md-8 col-xs-9'>
+                <h3 class="mt-0">{{series.title}} ({{series.year}})</h3>
+                <p class='card-text'>{{series.description}}</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    
+{% endblock content %}

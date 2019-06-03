@@ -1,0 +1,18 @@
+/* styling properties to display cards inline (until i figure out how to do it with bootstrap) */
+.inline {
+    display: inline-block;
+}
+.poster {
+    width: 168px;
+}
+ .series-container {
+    border: 1px solid #dedede;
+    margin-bottom: 30px;
+}
+body {
+    background: gray;
+}
+.container {
+    
+    background: white;
+}

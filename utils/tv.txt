@@ -18,37 +18,33 @@ Seinfeld//1989
 Mad Men//2007
 Breaking Bad//2008
 The Wire//2002
-Westworld//2016
-Psych//2006
-Spongebob Squarepants//1999
-Supernatural//2005
-The Twilight Zone//2019
-Black Mirror//2011
-Brooklyn Nine-Nine//2013
-Master of None//2015
-Parks and Recreation//2009
-Scooby Doo Where are you//1969
-Marvel's Agents of SHIELD//2013
-Foster's Home for Imaginary Friends//2004
-Drake and Josh//2004
-The Powerpuff Girls//1998
-Dexter's Laboratory//1996
-Courage the Cowardly Dog//1999
-Ed Edd n Eddy//1999
-Codename Kids Next Door//2002
-Regular Show//2010
-The Grim Adventures of Billy and Mandy//2000
-Cow and Chicken//1997
-Chowder//2007
-The Marvelous Misadventures of Flapjack//2008
-Camp Lazlo//2005
-Johnny Test//2005
-The Looney Tunes Show//2011
-The Flintstones//1960
-Spider-Man//1967
-House//2004
-<<<<<<< HEAD
-The Big Bang Theory//2007
-=======
-Big Bang Theory//2007
->>>>>>> 77a6a0957f1d5c27ffb1f105eee490803a3b63a8
+Westworld
+Psych
+Spongebob Squarepants
+Supernatural
+The Twilight Zone
+Black Mirror
+Brooklyn Nine-Nine
+Master of None
+Parks and Recreation
+Scooby Doo Where are you
+Marvel's Agents of SHIELD
+Foster's Home for Imaginary Friends
+Drake and Josh
+The Powerpuff Girls
+Dexter's Laboratory
+Courage the Cowardly Dog
+Ed Edd n Eddy
+Codename Kids Next Door
+Regular Show
+The Grim Adventures of Billy and Mandy
+Cow and Chicken
+Chowder
+The Marvelous Misadventures of Flapjack
+Camp Lazlo
+Johnny Test
+The Looney Tunes Show
+The Flintstones
+Spider-Man
+House
+The Big Bang Theory
