@@ -1,15 +1,31 @@
 {% extends "home/base.html" %}
 {% block content %}
-    {% for series in series_list %}
-    <div class='series-container'>
-        <div class='row'>
-            <div class='col-md-2 col-xs-3'><img src={{series.image}} class="poster"></div>
-            <div class='col-md-8 col-xs-9'>
-                <h3 class="mt-0">{{series.title}} ({{series.year}})</h3>
-                <p class='card-text'>{{series.description}}</p>
+<!-- series navbar -->
+<nav class='navbar navbar-dark justify-content-end'>
+        <div class="btn-toolbar " role="toolbar" aria-label="Toolbar with button groups">
+            <div class="btn-group " role="group" aria-label="Third group">
+                <button type="button" class="btn btn-secondary">reload</button>
             </div>
         </div>
-    </div>
+</nav>
+<center>
+
+    {% for series in series_list %}
+
+<!-- just posters display -->
+        <div class='card m-3 inline '>
+            <img src="{{series.image}}" class='card-img poster'>
+            <!-- <div class="card-img-overlay d-flex flex-column justify-content-end" style='padding:0; margin:0;'>
+                <h5 class='card-title' >{{series.title}}</h5>
+            </div> -->
+            <h6 class='media-title'>{{series.display_title}}</h6>
+            <p class='media-subtitle text-muted'>{{series.seasons}} Seasons</p>
+            
+            
+        </div>
+
     {% endfor %}
-    
+
+
+</center>
 {% endblock content %}

@@ -56,14 +56,27 @@ def scrape_series(series_name):
         plain_text = season.text.strip()
         if not plain_text.lower() == "specials":
             num_seasons += 1
-    print('check 6-returning')
+
+    # logic to make sure that the series description ain't too long
+    if len(series_desc) > 175:
+        short_desc = series_desc[0:150] + '...'
+    else:
+        short_desc = series_desc
+    # logic to make sure that the series title ain't too long (foster's home for imaginary friends)
+    if len(display_name) > 25:
+        short_name = display_name[0:22] + '...'
+    else:
+        short_name = display_name
+
     return {
         "title": display_name,
+        "display_title": short_name,
         "year": year_produced,
         "seasons": num_seasons,
         "description": series_desc,
         "genres": series_genres,
-        "image": series_poster
+        "image": series_poster,
+        "short_description": short_desc
     }
 
 
@@ -80,7 +93,7 @@ def scrape_movie(movie_name):
     }
 
 
-def scrape(media_title, media_type):
+def scrape(media_title, media_type, force_refresh=False):
     """return the information for a series/movie as a dictionary"""
     
     # if there isn't a file for the media locally

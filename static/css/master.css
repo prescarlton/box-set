@@ -3,16 +3,36 @@
     display: inline-block;
 }
 .poster {
-    width: 168px;
+    max-width: 100%;
 }
- .series-container {
-    border: 1px solid #dedede;
-    margin-bottom: 30px;
+
+.card {
+    /* margin:30px; */
+    max-width:10em;
+    border: none;
+    
+}
+.media-title{
+    text-align: left;
+    padding-top: 5px;
+    max-width: 100%;
+    overflow: hidden !important;
+    white-space: nowrap !important;
+    text-overflow: ellipsis;
+    font-weight: bold;
+    /* font-size:14px; */
+    
+}
+.media-subtitle{
+    font-weight: lighter;
+    text-align: left;
+    padding:0;
+    /* padding-top: 5px; */
 }
 body {
-    background: gray;
+    background: #272727;
 }
 .container {
-    
     background: white;
+    border-radius:5px;
 }

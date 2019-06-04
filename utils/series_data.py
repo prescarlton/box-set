@@ -26,3 +26,7 @@ def get_series():
         series_list.append(scrape(series, 'tv series'))
 
     return series_list
+
+def refresh_series(title=None):
+    """refreshes a specific series, or all of them if title is unspecified"""
+    pass
