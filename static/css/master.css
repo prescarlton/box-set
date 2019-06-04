@@ -10,6 +10,7 @@
     /* margin:30px; */
     max-width:10em;
     border: none;
+    text-align:left;
     
 }
 .media-title{
@@ -35,4 +36,9 @@ body {
 .container {
     background: white;
     border-radius:5px;
+}
+.series-content{
+    margin: 0 auto;
+    
+    text-align: center;
 }

@@ -1,5 +1,6 @@
 {% extends "home/base.html" %}
 {% block content %}
+<div class='series-content'>
 <!-- series navbar -->
 <nav class='navbar navbar-dark justify-content-end'>
         <div class="btn-toolbar " role="toolbar" aria-label="Toolbar with button groups">
@@ -8,7 +9,7 @@
             </div>
         </div>
 </nav>
-<center>
+
 
     {% for series in series_list %}
 
@@ -27,5 +28,5 @@
     {% endfor %}
 
 
-</center>
+</div>
 {% endblock content %}
